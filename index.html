@@ -2,500 +2,457 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Umutima Services | 3D Tribute</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Hyperdimensional 3D Core - Mesmerizing Interactive Experience</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
-            font-family: 'Segoe UI', 'Poppins', system-ui, sans-serif;
-            background: linear-gradient(135deg, #da34b0 0%, #1818c9 50%, #19e924 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow-x: hidden;
-            position: relative;
-        }
-
-        /* Animated Background Particles */
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
+            margin: 0;
             overflow: hidden;
+            font-family: 'Segoe UI', 'Orbitron', 'Arial', sans-serif;
         }
-
-        .particle {
+        #info {
             position: absolute;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            animation: float 20s infinite linear;
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.5;
-            }
-            90% {
-                opacity: 0.5;
-            }
-            100% {
-                transform: translateY(-100vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-        /* Main Container */
-        .container {
-            position: relative;
-            z-index: 1;
-            perspective: 1200px;
-            padding: 40px;
-        }
-
-        /* 3D Scene */
-        .scene {
-            width: 350px;
-            height: 500px;
-            position: relative;
-            margin: 0 auto;
-            transform-style: preserve-3d;
-            animation: sceneFloat 3s ease-in-out infinite;
-        }
-
-        @keyframes sceneFloat {
-            0%, 100% {
-                transform: translateY(0px) rotateX(5deg);
-            }
-            50% {
-                transform: translateY(-20px) rotateX(5deg);
-            }
-        }
-
-        /* 3D Card */
-        .card-3d {
-            width: 100%;
-            height: 100%;
-            position: relative;
-            transform-style: preserve-3d;
-            transition: transform 0.8s cubic-bezier(0.4, 0.2, 0.2, 1);
-            cursor: pointer;
-        }
-
-        .scene:hover .card-3d {
-            transform: rotateY(180deg);
-        }
-
-        /* Front Face */
-        .card-front, .card-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
-            border-radius: 25px;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
-        }
-
-        .card-front {
-            background: linear-gradient(135deg, #1E2A3E 0%, #4A3B52 100%);
-            transform: rotateY(0deg);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-
-        .card-front::before {
-            content: '🕊️';
-            position: absolute;
-            font-size: 200px;
-            opacity: 0.05;
-            bottom: -50px;
-            right: -50px;
-        }
-
-        .card-back {
-            background: linear-gradient(135deg, #8B7355 0%, #4A3B52 100%);
-            transform: rotateY(180deg);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 30px;
-            text-align: center;
-        }
-
-        /* Icon Container */
-        .icon-container {
-            width: 120px;
-            height: 120px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 30px;
-            animation: pulse 2s infinite;
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
-            }
-            50% {
-                transform: scale(1.05);
-                box-shadow: 0 0 0 20px rgba(255, 255, 255, 0);
-            }
-        }
-
-        .icon-container i {
-            font-size: 60px;
-            color: white;
-        }
-
-        /* Text Styles */
-        h1 {
-            color: white;
-            font-size: 28px;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-
-        .tagline {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 14px;
-            text-align: center;
-            padding: 0 20px;
-        }
-
-        .phone-number {
-            margin-top: 30px;
-            background: rgba(255, 255, 255, 0.2);
-            padding: 10px 20px;
-            border-radius: 50px;
-            color: white;
-            font-weight: bold;
+            bottom: 20px;
+            left: 20px;
+            color: rgba(255,255,255,0.8);
+            background: rgba(0,0,0,0.6);
             backdrop-filter: blur(5px);
-        }
-
-        /* Back Face Content */
-        .back-title {
-            color: white;
-            font-size: 24px;
-            margin-bottom: 15px;
-        }
-
-        .back-text {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 14px;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-        .service-list {
-            list-style: none;
-            width: 100%;
-            margin: 20px 0;
-        }
-
-        .service-list li {
-            color: white;
-            padding: 8px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 13px;
-        }
-
-        .service-list li i {
-            width: 20px;
-        }
-
-        .emergency-btn {
-            background: #8B3A3A;
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: bold;
-            margin-top: 20px;
-            transition: all 0.3s;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .emergency-btn:hover {
-            background: #6B2A2A;
-            transform: scale(1.05);
-        }
-
-        /* 3D Floating Cards Grid */
-        .floating-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin-top: 60px;
-            perspective: 1000px;
-        }
-
-        .floating-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
+            padding: 8px 16px;
             border-radius: 20px;
-            padding: 30px;
-            text-align: center;
-            transition: all 0.5s;
-            transform-style: preserve-3d;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            animation: cardFloat 3s ease-in-out infinite;
-            animation-delay: calc(var(--i) * 0.2s);
+            font-size: 12px;
+            pointer-events: none;
+            z-index: 10;
+            letter-spacing: 1px;
+            font-weight: 300;
+            border-left: 3px solid #ff3366;
+            box-shadow: 0 0 15px rgba(0,0,0,0.3);
         }
-
-        @keyframes cardFloat {
-            0%, 100% {
-                transform: translateY(0px) rotateX(0deg);
-            }
-            50% {
-                transform: translateY(-15px) rotateX(5deg);
-            }
-        }
-
-        .floating-card:hover {
-            transform: translateY(-10px) rotateY(10deg) scale(1.05);
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .floating-card i {
-            font-size: 48px;
-            color: #8B7355;
-            margin-bottom: 20px;
-        }
-
-        .floating-card h3 {
-            color: white;
-            margin-bottom: 10px;
-        }
-
-        .floating-card p {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 14px;
-        }
-
-        .price {
-            font-size: 28px;
-            font-weight: bold;
-            color: #FFD700;
-            margin: 15px 0;
-        }
-
-        /* Rotating Logo */
-        .rotating-logo {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 20px;
-            animation: rotate3d 8s infinite linear;
-            transform-style: preserve-3d;
-        }
-
-        @keyframes rotate3d {
-            0% {
-                transform: rotateY(0deg) rotateX(0deg);
-            }
-            100% {
-                transform: rotateY(360deg) rotateX(360deg);
-            }
-        }
-
-        .rotating-logo i {
-            font-size: 80px;
-            color: #FFD700;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .floating-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .scene {
-                width: 280px;
-                height: 420px;
-            }
-            
-            h1 {
-                font-size: 22px;
-            }
-        }
-
-        /* Glow Effect */
-        .glow {
+        #controls-hint {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle, rgba(139, 115, 85, 0.3), transparent);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            animation: glow 3s infinite;
+            bottom: 20px;
+            right: 20px;
+            color: rgba(255,255,255,0.6);
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(4px);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-family: monospace;
+            pointer-events: none;
+            z-index: 10;
         }
-
-        @keyframes glow {
-            0%, 100% {
-                opacity: 0.3;
-                transform: translate(-50%, -50%) scale(1);
-            }
-            50% {
-                opacity: 0.6;
-                transform: translate(-50%, -50%) scale(1.3);
-            }
+        @media (max-width: 600px) {
+            #info { font-size: 8px; bottom: 10px; left: 10px; }
+            #controls-hint { font-size: 7px; }
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-    <!-- Animated Particles -->
-    <div class="particles" id="particles"></div>
-
-    <div class="container">
-        <!-- Main 3D Card -->
-        <div class="scene">
-            <div class="card-3d">
-                <!-- Front Face -->
-                <div class="card-front">
-                    <div class="glow"></div>
-                    <div class="rotating-logo">
-                        <i class="fas fa-hand-holding-heart"></i>
-                    </div>
-                    <div class="icon-container">
-                        <i class="fas fa-dove"></i>
-                    </div>
-                    <h1>Umutima Services</h1>
-                    <p class="tagline">Compassionate After-Life Care<br>Service with Dignity & Respect</p>
-                    <div class="phone-number">
-                        <i class="fas fa-phone-alt"></i> +250 788 888 888
-                    </div>
-                </div>
-                
-                <!-- Back Face -->
-                <div class="card-back">
-                    <h2 class="back-title">🕊️ Our Promise</h2>
-                    <p class="back-text">We provide dignified, respectful, and affordable after-life care services to families in Rwanda during their most difficult moments.</p>
-                    <ul class="service-list">
-                        <li><i class="fas fa-truck"></i> Transport Services</li>
-                        <li><i class="fas fa-box"></i> Premium Coffins</li>
-                        <li><i class="fas fa-file-alt"></i> Burial Assistance</li>
-                        <li><i class="fas fa-clock"></i> 24/7 Emergency</li>
-                    </ul>
-                    <button class="emergency-btn" onclick="window.location.href='tel:+250788888888'">
-                        <i class="fas fa-phone-alt"></i> Call Now
-                    </button>
-                    <p style="margin-top: 15px; font-size: 11px; color: rgba(255,255,255,0.6);">
-                        Available 24/7
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <!-- 3D Floating Cards Grid -->
-        <div class="floating-grid">
-            <div class="floating-card" style="--i: 0">
-                <i class="fas fa-truck"></i>
-                <h3>Transport Service</h3>
-                <p>Dignified transport from hospital or home to burial site</p>
-                <div class="price">25,000 RWF</div>
-            </div>
-            
-            <div class="floating-card" style="--i: 1">
-                <i class="fas fa-crown"></i>
-                <h3>Premium Coffin</h3>
-                <p>High-quality mahogany with velvet interior</p>
-                <div class="price">100,000 RWF</div>
-            </div>
-            
-            <div class="floating-card" style="--i: 2">
-                <i class="fas fa-file-contract"></i>
-                <h3>Full Package</h3>
-                <p>Transport + Standard Coffin + Assistance</p>
-                <div class="price">95,000 RWF</div>
-            </div>
-        </div>
-
-        <!-- 3D Text Banner -->
-        <div style="text-align: center; margin-top: 50px; transform-style: preserve-3d;">
-            <div style="
-                background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-                padding: 20px;
-                border-radius: 50px;
-                transform: rotateX(10deg);
-                animation: bannerGlow 2s infinite;
-            ">
-                <p style="color: white; letter-spacing: 2px;">
-                    <i class="fas fa-heart" style="color: #FF6B6B;"></i>
-                    Serving Rwandan Families Since 2018
-                    <i class="fas fa-heart" style="color: #FF6B6B;"></i>
-                </p>
-            </div>
-        </div>
+    <div id="info">
+        ✧ HYPERDIMENSIONAL CORE ✧ | PULSING ENERGY | ORBITING FRAGMENTS
+    </div>
+    <div id="controls-hint">
+        🖱️ Drag to Rotate | ⚡ Scroll to Zoom
     </div>
 
-    <script>
-        // Create animated particles
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            for (let i = 0; i < 50; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('particle');
-                const size = Math.random() * 5 + 2;
-                particle.style.width = size + 'px';
-                particle.style.height = size + 'px';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDuration = Math.random() * 10 + 10 + 's';
-                particle.style.animationDelay = Math.random() * 10 + 's';
-                particlesContainer.appendChild(particle);
+    <!-- Import Three.js core and add-ons from CDN -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.128.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.128.0/examples/jsm/"
             }
         }
-        
-        createParticles();
+    </script>
 
-        // Add 3D tilt effect on main card
-        const scene = document.querySelector('.scene');
-        const card = document.querySelector('.card-3d');
+    <script type="module">
+        import * as THREE from 'three';
+        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+        import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+        import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+        import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
         
-        scene.addEventListener('mousemove', (e) => {
-            const rect = scene.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-            const rotateX = (y - centerY) / 20;
-            const rotateY = (x - centerX) / 20;
+        // --- setup scene, camera, renderer ---
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0x010114);
+        scene.fog = new THREE.FogExp2(0x010114, 0.003); // subtle depth fog
+
+        // Camera: perspective for dramatic 3D
+        const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.set(4, 2.5, 6);
+        camera.lookAt(0, 0, 0);
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.toneMapping = THREE.ReinhardToneMapping;
+        renderer.toneMappingExposure = 1.2;
+        document.body.appendChild(renderer.domElement);
+
+        // --- post-processing bloom for intense glow (very 3D and mesmerizing) ---
+        const renderScene = new RenderPass(scene, camera);
+        const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.2, 0.3, 0.85);
+        bloomPass.threshold = 0.1;
+        bloomPass.strength = 0.9;
+        bloomPass.radius = 0.8;
+        const effectComposer = new EffectComposer(renderer);
+        effectComposer.addPass(renderScene);
+        effectComposer.addPass(bloomPass);
+
+        // --- Orbit Controls with dynamic feel, auto-rotate optional? let user control, but allow smooth rotation ---
+        const controls = new OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;          // smooth inertial movement
+        controls.dampingFactor = 0.05;
+        controls.rotateSpeed = 1.5;
+        controls.zoomSpeed = 1.2;
+        controls.panSpeed = 0.5;
+        controls.enableZoom = true;
+        controls.autoRotate = false;
+        controls.enablePan = true;
+        controls.target.set(0, 0, 0);
+        
+        // --- Create a complex central object: multi-layered icosahedron with wireframe and emissive core ---
+        const coreGroup = new THREE.Group();
+        
+        // 1. Inner glowing sphere (pulsing)
+        const innerCoreMat = new THREE.MeshStandardMaterial({
+            color: 0xff3366,
+            emissive: 0xff1144,
+            emissiveIntensity: 1.2,
+            metalness: 0.3,
+            roughness: 0.2
+        });
+        const innerSphere = new THREE.Mesh(new THREE.SphereGeometry(0.65, 64, 64), innerCoreMat);
+        coreGroup.add(innerSphere);
+        
+        // 2. Icosahedron with wireframe and semi-transparent facets (complex geometry)
+        const icoGeo = new THREE.IcosahedronGeometry(0.95, 0); // smooth base
+        const icoMatSolid = new THREE.MeshStandardMaterial({
+            color: 0x33aaff,
+            emissive: 0x2266aa,
+            emissiveIntensity: 0.4,
+            wireframe: false,
+            transparent: true,
+            opacity: 0.25,
+            side: THREE.DoubleSide
+        });
+        const icoCore = new THREE.Mesh(icoGeo, icoMatSolid);
+        coreGroup.add(icoCore);
+        
+        // Wireframe overlay for icosahedron (sharp 3D edges)
+        const icoWireMat = new THREE.MeshBasicMaterial({
+            color: 0x88ddff,
+            wireframe: true,
+            transparent: true,
+            opacity: 0.7
+        });
+        const icoWire = new THREE.Mesh(icoGeo, icoWireMat);
+        coreGroup.add(icoWire);
+        
+        // 3. Outer ring torus knots (dual, swirling)
+        const knotMat = new THREE.MeshStandardMaterial({
+            color: 0xff66cc,
+            emissive: 0xaa44aa,
+            emissiveIntensity: 0.6,
+            metalness: 0.8,
+            roughness: 0.3
+        });
+        const torusKnot = new THREE.Mesh(new THREE.TorusKnotGeometry(1.2, 0.12, 180, 24, 3, 4), knotMat);
+        coreGroup.add(torusKnot);
+        
+        const knotMat2 = new THREE.MeshStandardMaterial({
+            color: 0x33ffcc,
+            emissive: 0x22aa88,
+            emissiveIntensity: 0.5,
+            metalness: 0.7,
+            roughness: 0.4
+        });
+        const torusKnot2 = new THREE.Mesh(new THREE.TorusKnotGeometry(1.45, 0.08, 200, 32, 5, 7), knotMat2);
+        coreGroup.add(torusKnot2);
+        
+        // 4. Floating particles around core (tiny sparkles)
+        const particleCount = 1800;
+        const particleGeometry = new THREE.BufferGeometry();
+        const positions = new Float32Array(particleCount * 3);
+        const colorsArray = new Float32Array(particleCount * 3);
+        for (let i = 0; i < particleCount; i++) {
+            // Spherical distribution radius between 1.6 and 2.4
+            const radius = 1.7 + Math.random() * 0.9;
+            const theta = Math.random() * Math.PI * 2;
+            const phi = Math.acos(2 * Math.random() - 1);
+            const x = radius * Math.sin(phi) * Math.cos(theta);
+            const y = radius * Math.sin(phi) * Math.sin(theta);
+            const z = radius * Math.cos(phi);
+            positions[i*3] = x;
+            positions[i*3+1] = y;
+            positions[i*3+2] = z;
             
-            card.style.transform = `rotateY(${rotateY}deg) rotateX(${rotateX}deg)`;
-        });
+            // vibrant colors based on position
+            const color = new THREE.Color().setHSL(0.55 + (y * 0.1), 1.0, 0.6);
+            colorsArray[i*3] = color.r;
+            colorsArray[i*3+1] = color.g;
+            colorsArray[i*3+2] = color.b;
+        }
+        particleGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        particleGeometry.setAttribute('color', new THREE.BufferAttribute(colorsArray, 3));
+        const particleMat = new THREE.PointsMaterial({ size: 0.035, vertexColors: true, transparent: true, blending: THREE.AdditiveBlending });
+        const particleSystem = new THREE.Points(particleGeometry, particleMat);
+        coreGroup.add(particleSystem);
         
-        scene.addEventListener('mouseleave', () => {
-            card.style.transform = 'rotateY(0deg) rotateX(0deg)';
-        });
+        scene.add(coreGroup);
+        
+        // --- ORBITING RINGS / SECONDARY DYNAMIC OBJECTS to keep people busy ---
+        const orbitGroup = new THREE.Group();
+        scene.add(orbitGroup);
+        
+        // Ring 1: large thin torus rotating in opposite direction
+        const ringMat = new THREE.MeshStandardMaterial({ color: 0x33aaff, emissive: 0x1166aa, emissiveIntensity: 0.4, metalness: 0.9, roughness: 0.2, transparent: true, opacity: 0.7 });
+        const outerRing = new THREE.Mesh(new THREE.TorusGeometry(2.2, 0.07, 128, 300), ringMat);
+        orbitGroup.add(outerRing);
+        
+        // Ring 2: tilted ring with different color
+        const ringMat2 = new THREE.MeshStandardMaterial({ color: 0xff55aa, emissive: 0x992266, emissiveIntensity: 0.5, side: THREE.DoubleSide });
+        const tiltedRing = new THREE.Mesh(new THREE.TorusGeometry(2.6, 0.05, 128, 300), ringMat2);
+        tiltedRing.rotation.x = Math.PI / 2.5;
+        tiltedRing.rotation.z = Math.PI / 3;
+        orbitGroup.add(tiltedRing);
+        
+        // Ring 3: delicate wireframe ring complex
+        const wireRingMat = new THREE.MeshBasicMaterial({ color: 0xffaa66, wireframe: true, transparent: true, opacity: 0.6 });
+        const wireRing = new THREE.Mesh(new THREE.TorusGeometry(1.9, 0.1, 64, 200), wireRingMat);
+        orbitGroup.add(wireRing);
+        
+        // --- Floating orbs that revolve around center (satellites) ---
+        const satelliteCount = 24;
+        const satellites = [];
+        const satGroup = new THREE.Group();
+        scene.add(satGroup);
+        
+        for (let i = 0; i < satelliteCount; i++) {
+            const size = 0.08 + Math.random() * 0.05;
+            const satMat = new THREE.MeshStandardMaterial({
+                color: new THREE.Color().setHSL(0.6 + Math.random() * 0.3, 1.0, 0.6),
+                emissive: 0x44aaff,
+                emissiveIntensity: 0.5,
+                metalness: 0.9,
+                roughness: 0.2
+            });
+            const sphere = new THREE.Mesh(new THREE.SphereGeometry(size, 24, 24), satMat);
+            // store angle, radius, speed, axis offset
+            const angle = (i / satelliteCount) * Math.PI * 2;
+            const radius = 2.9;
+            const speed = 0.4 + Math.random() * 0.3;
+            const yOffset = Math.sin(angle * 3) * 0.5;
+            sphere.userData = {
+                angle: angle,
+                radius: radius,
+                speed: speed,
+                yOffset: yOffset,
+                baseY: Math.sin(angle) * 0.6
+            };
+            satGroup.add(sphere);
+            satellites.push(sphere);
+        }
+        
+        // --- additional floating particles stream (a dynamic helix trail) ---
+        const helixParticleCount = 2500;
+        const helixGeo = new THREE.BufferGeometry();
+        const helixPositions = new Float32Array(helixParticleCount * 3);
+        for (let i = 0; i < helixParticleCount; i++) {
+            const t = i / helixParticleCount; // 0..1
+            const radius = 2.2;
+            const angle = t * Math.PI * 12;
+            const x = Math.cos(angle) * radius;
+            const z = Math.sin(angle) * radius;
+            const y = (t - 0.5) * 3.2;
+            helixPositions[i*3] = x;
+            helixPositions[i*3+1] = y;
+            helixPositions[i*3+2] = z;
+        }
+        helixGeo.setAttribute('position', new THREE.BufferAttribute(helixPositions, 3));
+        const helixMat = new THREE.PointsMaterial({ color: 0x77ccff, size: 0.025, transparent: true, blending: THREE.AdditiveBlending });
+        const helixPoints = new THREE.Points(helixGeo, helixMat);
+        scene.add(helixPoints);
+        
+        // --- additional shimmering stardust field in background (very deep 3D) ---
+        const starFieldCount = 4000;
+        const starGeo = new THREE.BufferGeometry();
+        const starPos = new Float32Array(starFieldCount * 3);
+        for (let i = 0; i < starFieldCount; i++) {
+            starPos[i*3] = (Math.random() - 0.5) * 200;
+            starPos[i*3+1] = (Math.random() - 0.5) * 100;
+            starPos[i*3+2] = (Math.random() - 0.5) * 80 - 40;
+        }
+        starGeo.setAttribute('position', new THREE.BufferAttribute(starPos, 3));
+        const starMat = new THREE.PointsMaterial({ color: 0x88aaff, size: 0.08, transparent: true, opacity: 0.6, blending: THREE.AdditiveBlending });
+        const starField = new THREE.Points(starGeo, starMat);
+        scene.add(starField);
+        
+        // --- dynamic glowing floor halo (just for depth perception) ---
+        const glowRingMat = new THREE.MeshStandardMaterial({ color: 0x3377ff, emissive: 0x2255aa, emissiveIntensity: 0.4, side: THREE.DoubleSide, transparent: true, opacity: 0.3 });
+        const glowDisc = new THREE.Mesh(new THREE.RingGeometry(2.4, 3.2, 32), glowRingMat);
+        glowDisc.rotation.x = -Math.PI / 2;
+        glowDisc.position.y = -1.2;
+        scene.add(glowDisc);
+        
+        // --- Lights: dramatic dynamic colored lights for depth ---
+        // Ambient
+        const ambientLight = new THREE.AmbientLight(0x111122);
+        scene.add(ambientLight);
+        // Main directional light
+        const mainLight = new THREE.DirectionalLight(0xffffff, 1.2);
+        mainLight.position.set(2, 3, 4);
+        scene.add(mainLight);
+        // Fill light from below
+        const fillLight = new THREE.PointLight(0x3366ff, 0.6);
+        fillLight.position.set(0, -2, 0);
+        scene.add(fillLight);
+        // Back rim light
+        const rimLight = new THREE.PointLight(0xff66aa, 0.8);
+        rimLight.position.set(-2, 1, -3);
+        scene.add(rimLight);
+        // Moving color lights (will animate)
+        const movingLight = new THREE.PointLight(0xff44aa, 0.9);
+        movingLight.position.set(1.5, 1.2, 1.8);
+        scene.add(movingLight);
+        
+        const movingLight2 = new THREE.PointLight(0x44ffaa, 0.7);
+        movingLight2.position.set(-1.2, 1.8, 2);
+        scene.add(movingLight2);
+        
+        // Additional tiny sparkle lights around core (volumetric hints)
+        const extraGlowMat = new THREE.MeshStandardMaterial({ color: 0xffaa88, emissive: 0xff4422, emissiveIntensity: 0.8 });
+        const glowBalls = [];
+        for (let i = 0; i < 36; i++) {
+            const ball = new THREE.Mesh(new THREE.SphereGeometry(0.045, 8, 8), extraGlowMat);
+            const rad = 1.55;
+            const theta2 = (i / 36) * Math.PI * 2;
+            const phi2 = Math.sin(theta2 * 3) * 0.8;
+            ball.userData = { rad, theta2, phi2, speed: 0.5 };
+            scene.add(ball);
+            glowBalls.push(ball);
+        }
+        
+        // --- Animation parameters ---
+        let time = 0;
+        
+        // --- core pulse variables ---
+        let pulseDirection = 1;
+        let pulseValue = 0;
+        
+        // --- custom dynamic for torus knots rotation and particle movement ---
+        
+        // Helper: animate with smooth sin waves for lights and materials
+        function animate() {
+            requestAnimationFrame(animate);
+            time += 0.012; // smooth increment
+            
+            // 1. Central core: pulse scale and emissive intensity
+            const scaleFactor = 1 + Math.sin(time * 3.5) * 0.04;
+            innerSphere.scale.set(scaleFactor, scaleFactor, scaleFactor);
+            // pulse emissive intensity
+            const intensity = 1.1 + Math.sin(time * 4.2) * 0.5;
+            innerCoreMat.emissiveIntensity = intensity;
+            icoCore.material.emissiveIntensity = 0.3 + Math.sin(time * 2.3) * 0.2;
+            knotMat.emissiveIntensity = 0.6 + Math.sin(time * 2.1) * 0.3;
+            knotMat2.emissiveIntensity = 0.5 + Math.cos(time * 2.7) * 0.3;
+            
+            // rotate core group elements independently for dynamic look
+            torusKnot.rotation.x = time * 0.4;
+            torusKnot.rotation.y = time * 0.7;
+            torusKnot2.rotation.z = time * 0.5;
+            torusKnot2.rotation.x = time * 0.3;
+            icoWire.rotation.y = time * 0.2;
+            icoCore.rotation.y = time * 0.15;
+            icoWire.rotation.x = Math.sin(time * 0.5) * 0.2;
+            
+            // particle system rotation: adds dynamism
+            particleSystem.rotation.y = time * 0.1;
+            particleSystem.rotation.x = Math.sin(time * 0.23) * 0.1;
+            
+            // 2. Orbit group rings rotation (multiple directions)
+            outerRing.rotation.z = time * 0.2;
+            outerRing.rotation.x = Math.sin(time * 0.37) * 0.2;
+            tiltedRing.rotation.y = time * 0.35;
+            wireRing.rotation.x = time * 0.5;
+            wireRing.rotation.z = time * 0.2;
+            
+            // 3. Satellites revolution: update positions in a circle with vertical variation
+            satellites.forEach((sat, idx) => {
+                const data = sat.userData;
+                data.angle += 0.008 * data.speed;
+                const x = Math.cos(data.angle) * data.radius;
+                const z = Math.sin(data.angle) * data.radius;
+                const yVar = Math.sin(data.angle * 2.5) * 0.45;
+                sat.position.set(x, yVar + 0.2, z);
+                // slight pulsation
+                const s = 0.08 + Math.sin(time * 5 + idx) * 0.02;
+                sat.scale.set(s / 0.08, s / 0.08, s / 0.08);
+            });
+            
+            // 4. Helix points rotation and slight pulsation
+            helixPoints.rotation.y = time * 0.15;
+            helixPoints.rotation.x = Math.sin(time * 0.2) * 0.1;
+            // also shift position colors? maybe not needed, but it moves elegantly
+            
+            // 5. Starfield slow rotation to give a sense of vastness
+            starField.rotation.y = time * 0.02;
+            starField.rotation.x = time * 0.01;
+            
+            // 6. Moving lights: dynamic color shifts
+            const hue1 = (time * 0.1) % 1;
+            const hue2 = (time * 0.13 + 0.5) % 1;
+            movingLight.color.setHSL(hue1, 1.0, 0.6);
+            movingLight2.color.setHSL(hue2, 1.0, 0.6);
+            movingLight.position.x = 1.8 + Math.sin(time) * 0.7;
+            movingLight.position.z = 1.5 + Math.cos(time * 0.9) * 1.0;
+            movingLight2.position.x = -1.5 + Math.sin(time * 1.2) * 0.9;
+            movingLight2.position.z = 1.2 + Math.cos(time * 0.7) * 1.3;
+            rimLight.intensity = 0.7 + Math.sin(time * 1.8) * 0.3;
+            fillLight.intensity = 0.5 + Math.cos(time * 1.2) * 0.2;
+            
+            // 7. Glow balls rotate around core
+            glowBalls.forEach((ball, i) => {
+                const angleOff = time * 1.2 + i * 0.5;
+                const rad = 1.68;
+                const xPos = Math.cos(angleOff) * rad;
+                const zPos = Math.sin(angleOff) * rad;
+                const yPos = Math.sin(angleOff * 2) * 0.65;
+                ball.position.set(xPos, yPos, zPos);
+                const matGlow = ball.material;
+                matGlow.emissiveIntensity = 0.5 + Math.sin(time * 6 + i) * 0.4;
+            });
+            
+            // 8. Slight camera motion or just let controls handle, but we can add subtle auto orbit? 
+            // Not overriding controls: but we can animate the ring group vertical float
+            orbitGroup.position.y = Math.sin(time * 0.5) * 0.03;
+            satGroup.position.y = Math.sin(time * 0.7) * 0.02;
+            
+            // 9. update material opacity for some extra flair
+            ringMat.emissiveIntensity = 0.4 + Math.sin(time) * 0.15;
+            ringMat2.emissiveIntensity = 0.5 + Math.cos(time * 1.3) * 0.2;
+            
+            // Update controls for smoothness
+            controls.update(); // updates if damping or autoRotate false, still needed for internal matrix
+            
+            // Render via effect composer for bloom
+            effectComposer.render();
+        }
+        
+        // --- start animation loop ---
+        animate();
+        
+        // --- handle window resize for responsiveness ---
+        window.addEventListener('resize', onWindowResize, false);
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            effectComposer.setSize(window.innerWidth, window.innerHeight);
+        }
+        
+        // small console message to show readiness
+        console.log('3D Hyperdimensional Core Active — ready to mesmerize!');
     </script>
 </body>
 </html>
