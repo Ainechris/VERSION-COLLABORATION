@@ -3,12 +3,499 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Umutima Services | 3D Tribute</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Poppins', system-ui, sans-serif;
+            background: linear-gradient(135deg, #0a0a2a 0%, #1a1a3e 50%, #2a1a3e 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated Background Particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.5;
+            }
+            90% {
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Main Container */
+        .container {
+            position: relative;
+            z-index: 1;
+            perspective: 1200px;
+            padding: 40px;
+        }
+
+        /* 3D Scene */
+        .scene {
+            width: 350px;
+            height: 500px;
+            position: relative;
+            margin: 0 auto;
+            transform-style: preserve-3d;
+            animation: sceneFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes sceneFloat {
+            0%, 100% {
+                transform: translateY(0px) rotateX(5deg);
+            }
+            50% {
+                transform: translateY(-20px) rotateX(5deg);
+            }
+        }
+
+        /* 3D Card */
+        .card-3d {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.4, 0.2, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .scene:hover .card-3d {
+            transform: rotateY(180deg);
+        }
+
+        /* Front Face */
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 25px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .card-front {
+            background: linear-gradient(135deg, #1E2A3E 0%, #4A3B52 100%);
+            transform: rotateY(0deg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .card-front::before {
+            content: '🕊️';
+            position: absolute;
+            font-size: 200px;
+            opacity: 0.05;
+            bottom: -50px;
+            right: -50px;
+        }
+
+        .card-back {
+            background: linear-gradient(135deg, #8B7355 0%, #4A3B52 100%);
+            transform: rotateY(180deg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            text-align: center;
+        }
+
+        /* Icon Container */
+        .icon-container {
+            width: 120px;
+            height: 120px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+            animation: pulse 2s infinite;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 20px rgba(255, 255, 255, 0);
+            }
+        }
+
+        .icon-container i {
+            font-size: 60px;
+            color: white;
+        }
+
+        /* Text Styles */
+        h1 {
+            color: white;
+            font-size: 28px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .tagline {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 14px;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .phone-number {
+            margin-top: 30px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px 20px;
+            border-radius: 50px;
+            color: white;
+            font-weight: bold;
+            backdrop-filter: blur(5px);
+        }
+
+        /* Back Face Content */
+        .back-title {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .back-text {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .service-list {
+            list-style: none;
+            width: 100%;
+            margin: 20px 0;
+        }
+
+        .service-list li {
+            color: white;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+        }
+
+        .service-list li i {
+            width: 20px;
+        }
+
+        .emergency-btn {
+            background: #8B3A3A;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .emergency-btn:hover {
+            background: #6B2A2A;
+            transform: scale(1.05);
+        }
+
+        /* 3D Floating Cards Grid */
+        .floating-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+            perspective: 1000px;
+        }
+
+        .floating-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.5s;
+            transform-style: preserve-3d;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: cardFloat 3s ease-in-out infinite;
+            animation-delay: calc(var(--i) * 0.2s);
+        }
+
+        @keyframes cardFloat {
+            0%, 100% {
+                transform: translateY(0px) rotateX(0deg);
+            }
+            50% {
+                transform: translateY(-15px) rotateX(5deg);
+            }
+        }
+
+        .floating-card:hover {
+            transform: translateY(-10px) rotateY(10deg) scale(1.05);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .floating-card i {
+            font-size: 48px;
+            color: #8B7355;
+            margin-bottom: 20px;
+        }
+
+        .floating-card h3 {
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .floating-card p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+        }
+
+        .price {
+            font-size: 28px;
+            font-weight: bold;
+            color: #FFD700;
+            margin: 15px 0;
+        }
+
+        /* Rotating Logo */
+        .rotating-logo {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            animation: rotate3d 8s infinite linear;
+            transform-style: preserve-3d;
+        }
+
+        @keyframes rotate3d {
+            0% {
+                transform: rotateY(0deg) rotateX(0deg);
+            }
+            100% {
+                transform: rotateY(360deg) rotateX(360deg);
+            }
+        }
+
+        .rotating-logo i {
+            font-size: 80px;
+            color: #FFD700;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .floating-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .scene {
+                width: 280px;
+                height: 420px;
+            }
+            
+            h1 {
+                font-size: 22px;
+            }
+        }
+
+        /* Glow Effect */
+        .glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(139, 115, 85, 0.3), transparent);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            animation: glow 3s infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                opacity: 0.3;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            50% {
+                opacity: 0.6;
+                transform: translate(-50%, -50%) scale(1.3);
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-    <h1>My name is Bambe</h1>
-     <p>my kizito bbbbbbbbbbbbbbbbbb</p>
-     <h2>me arhur</h2>
-   
+    <!-- Animated Particles -->
+    <div class="particles" id="particles"></div>
+
+    <div class="container">
+        <!-- Main 3D Card -->
+        <div class="scene">
+            <div class="card-3d">
+                <!-- Front Face -->
+                <div class="card-front">
+                    <div class="glow"></div>
+                    <div class="rotating-logo">
+                        <i class="fas fa-hand-holding-heart"></i>
+                    </div>
+                    <div class="icon-container">
+                        <i class="fas fa-dove"></i>
+                    </div>
+                    <h1>Umutima Services</h1>
+                    <p class="tagline">Compassionate After-Life Care<br>Service with Dignity & Respect</p>
+                    <div class="phone-number">
+                        <i class="fas fa-phone-alt"></i> +250 788 888 888
+                    </div>
+                </div>
+                
+                <!-- Back Face -->
+                <div class="card-back">
+                    <h2 class="back-title">🕊️ Our Promise</h2>
+                    <p class="back-text">We provide dignified, respectful, and affordable after-life care services to families in Rwanda during their most difficult moments.</p>
+                    <ul class="service-list">
+                        <li><i class="fas fa-truck"></i> Transport Services</li>
+                        <li><i class="fas fa-box"></i> Premium Coffins</li>
+                        <li><i class="fas fa-file-alt"></i> Burial Assistance</li>
+                        <li><i class="fas fa-clock"></i> 24/7 Emergency</li>
+                    </ul>
+                    <button class="emergency-btn" onclick="window.location.href='tel:+250788888888'">
+                        <i class="fas fa-phone-alt"></i> Call Now
+                    </button>
+                    <p style="margin-top: 15px; font-size: 11px; color: rgba(255,255,255,0.6);">
+                        Available 24/7
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3D Floating Cards Grid -->
+        <div class="floating-grid">
+            <div class="floating-card" style="--i: 0">
+                <i class="fas fa-truck"></i>
+                <h3>Transport Service</h3>
+                <p>Dignified transport from hospital or home to burial site</p>
+                <div class="price">25,000 RWF</div>
+            </div>
+            
+            <div class="floating-card" style="--i: 1">
+                <i class="fas fa-crown"></i>
+                <h3>Premium Coffin</h3>
+                <p>High-quality mahogany with velvet interior</p>
+                <div class="price">100,000 RWF</div>
+            </div>
+            
+            <div class="floating-card" style="--i: 2">
+                <i class="fas fa-file-contract"></i>
+                <h3>Full Package</h3>
+                <p>Transport + Standard Coffin + Assistance</p>
+                <div class="price">95,000 RWF</div>
+            </div>
+        </div>
+
+        <!-- 3D Text Banner -->
+        <div style="text-align: center; margin-top: 50px; transform-style: preserve-3d;">
+            <div style="
+                background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+                padding: 20px;
+                border-radius: 50px;
+                transform: rotateX(10deg);
+                animation: bannerGlow 2s infinite;
+            ">
+                <p style="color: white; letter-spacing: 2px;">
+                    <i class="fas fa-heart" style="color: #FF6B6B;"></i>
+                    Serving Rwandan Families Since 2018
+                    <i class="fas fa-heart" style="color: #FF6B6B;"></i>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Create animated particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                const size = Math.random() * 5 + 2;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDuration = Math.random() * 10 + 10 + 's';
+                particle.style.animationDelay = Math.random() * 10 + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        createParticles();
+
+        // Add 3D tilt effect on main card
+        const scene = document.querySelector('.scene');
+        const card = document.querySelector('.card-3d');
+        
+        scene.addEventListener('mousemove', (e) => {
+            const rect = scene.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            const rotateX = (y - centerY) / 20;
+            const rotateY = (x - centerX) / 20;
+            
+            card.style.transform = `rotateY(${rotateY}deg) rotateX(${rotateX}deg)`;
+        });
+        
+        scene.addEventListener('mouseleave', () => {
+            card.style.transform = 'rotateY(0deg) rotateX(0deg)';
+        });
+    </script>
 </body>
 </html>
